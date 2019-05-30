@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Todo List</title>
+			<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+	<body>
+		<h1>Todo List</h1>
+		<ul>
+			<li>Test</li>
+			<%
+				var list = '';
+				for (var i = 0; i < todolist.length; i++) {
+					list += '<li>' + todolist[i].item + '>' + todolist[i]._id + '</a></li>';
+				}
+			%>
+		<%= list %>
+		</ul>
+	</body>
+</html>
