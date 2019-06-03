@@ -2,19 +2,64 @@
 <html>
 	<head>
 		<title>Todo List</title>
-			<link rel='stylesheet' href='/stylesheets/style.css' />
+			<link rel='stylesheet' href='/stylesheets/style.css'/>
+			<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 	</head>
+	<style>
+		html, body {
+			font-family: 'Quicksand', sans-serif;
+		}
+		h1 {
+			text-align: center;
+		}
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		th {
+			background-color: lightgray;
+		}
+		table, td {
+			border: 1px solid black;
+		}
+	</style>
 	<body>
 		<h1>Todo List</h1>
-		<ul>
-			<li>Test</li>
-			<%
-				var list = '';
-				for (var i = 0; i < todolist.length; i++) {
-					list += '<li>' + todolist[i].item + '>' + todolist[i]._id + '</a></li>';
-				}
-			%>
-		<%= list %>
-		</ul>
+		<div class="container">
+			<form name="addtodo" method="post" action="/todolist">
+				<input type="text" name="todo">
+				<input type="text" name="time">
+				<button type="submit">Submit</button>
+			</form>
+			<table>
+				<thead>
+					<tr>
+						<% if(todolist.length > 0) { %>
+							<th>Todo</th>
+							<th>Time</th>
+							<th>Delete?</th>
+						<% } %>
+					</tr>
+				</thead>
+				<tbody>
+					<% for(var i = 0; i < todolist.length; i++) { %>
+					<tr>
+							<td><%= todolist[i].todo; %></td>
+							<td><%= todolist[i].time; %></td>
+							<!-- <td><%= todolist[i]._id; %></td> -->
+							<td>
+								<form style="text-align: center" name="deletetodo" method="delete" action="/todolist/<%= todolist[i]._id; %>">
+									<button type="submit">x</button>
+								</form>
+							</td>
+					</tr>
+					<% } %>
+				</tbody>
+				<tfoot>
+					
+				</tfoot>
+			</table>
+		</div>
 	</body>
 </html>
